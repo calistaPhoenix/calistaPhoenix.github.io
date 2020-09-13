@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Geeky Faye Calculator</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the header */
+header {
+  background-color: #666;
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+  float: left;
+  width: 30%;
+  height: 300px; /* only for demonstration, should be removed */
+  background: #ccc;
+  padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+article {
+  float: left;
+  padding: 20px;
+  width: 70%;
+  background-color: #f1f1f1;
+  height: 300px; /* only for demonstration, should be removed */
+}
+
+/* Clear floats after the columns */
+section:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the footer */
+footer {
+  background-color: #777;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+}
+</style>
+</head>
+
+<body>
+    
+<header>
+  <h2>Geeky Faye Frame Calculator</h2>
+</header>
+
+<section>
+  <nav>
+    <ul>
+      
+    </ul>
+  </nav>
+  
+  <article>
+
+    
+    <h1>Just enter the desired height and width of your frame and hit calculate!</h1>
+    <p> Width:  <input type="number" id = "Width"></p>
+    <p>Height: <input type="number" id = "Height"></p>
+    <p><button onclick="myFunction()">Calculate!</button></p>
+    <p>Corners: <input type="number" id="corners" value="0" ></p>
+    <p>2-inch:  <input type="number" id = "2inch" value="0" readonly></p>
+    <p>3-inch:  <input type="number" id = "3inch" value="0" readonly></p>
+  </article>
+</section>
+
+<footer>
+  <p>Copyright Geeky Faye 2020</p>
+</footer>
+
+</body>
+<script type = "text/javascript">
+  function myFunction() {
+      width = document.getElementById("Width").value
+      height = document.getElementById("Height").value
+      calc_width = width - 8
+      pieces_width = Math.floor (calc_width / 3 ) * 2
+      pieces_width_r = Math.floor( (calc_width % 3)/2 ) * 2
+      calc_height = height - 8
+      pieces_height = Math.floor(calc_height / 3 ) * 2
+      pieces_height_r = Math.floor( (calc_height % 3)/2 ) * 2
+
+      document.getElementById("corners").value = 4;
+      document.getElementById("2inch").value = pieces_width_r + pieces_height_r;
+      document.getElementById("3inch").value = pieces_width + pieces_height;
+    }
+  </script>
+</html>
