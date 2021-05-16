@@ -1,151 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Peekture Fraymes Design Tool</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {
-  box-sizing: border-box;
-}
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | WebGL Test AR</title>
+    <script src="js/lib/aframe.min.js"></script>
+    <script src="js/lib/aframe-ar.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script src="js/app.js"></script>
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
+  </head>
 
-/* Style the header */
-header {
-  background-color: #666;
-  padding: 10px;
-  text-align: center;
-  font-size: 35px;
-  color: white;
-}
+  <body style="margin: 0px; overflow: hidden;">
+    <a-scene embedded arjs vr-mode-ui="enabled: false" copycanvas>
+      <div id="unityContainer" style="z-index: 2" ></div>
+      <!-- <a-marker preset="hiro"> <a-box></a-box> </a-marker> -->
+      <!-- <a-marker type="pattern" url="data/markers/pattern-arjs.patt"><a-box></a-box></a-marker> -->
+      <!-- <a-marker type="pattern" url="data/markers/test.patt" markercontroller="name : hiro"></a-marker> -->
 
-/* Create two columns/boxes that floats next to each other */
-nav {
-  float: left;
-  width: 30%;
-  height: 700px; /* only for demonstration, should be removed */
-  background: #ccc;
-  padding: 20px;
-}
+			<a-marker type="pattern" url="data/markers\Hiro.patt" markercontroller="name : Hiro"></a-marker>
+			<a-marker type="pattern" url="data/markers\Nutty.patt" markercontroller="name : Nutty"></a-marker>
+			<a-marker type="pattern" url="data/markers\NuttyCardboard.patt" markercontroller="name : NuttyCardboard"></a-marker>
+			<a-marker type="pattern" url="data/markers\pattern-AM.patt" markercontroller="name : pattern-AM"></a-marker>
 
-/* Style the list inside the menu */
-nav ul {
-  list-style-type: none;
-  padding: 0;
-  
-}
-
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-article {
-  float: left;
-  padding: 20px;
-  width: 70%;
-  background-color: #f1f1f1;
-  height: 700px; /* only for demonstration, should be removed */
-}
-
-/* Clear floats after the columns */
-section:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Style the footer */
-footer {
-  background-color: #777;
-  padding: 10px;
-  text-align: center;
-  color: white;
-}
-
-/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
-@media (max-width: 600px) {
-  nav, article {
-    width: 100%;
-    height: auto;
-  }
-}
-</style>
-</head>
-
-<body>
-    
-<header>
-  <h2>Peekture Fraymes Design Tool</h2>
-</header>
-
-<section>
-  <nav>
-    <ul>
-      <h1>Just enter the desired height and width of your frame and hit calculate!</h1>
-    <select name="Sizing" id="type">
-      <option value="international">International</option>
-      <option value="american">American</option>
-    </select>
-
-
-    <p> Width:  <input type="number" id = "Width"></p>
-    <p>Height: <input type="number" id = "Height"></p>
-    <p><button onclick="myFunction()">Calculate!</button></p>
-    <p> <img src="GraphicLogo02.png" alt="Logo" style="width:50%">    </p>
-
-    
-    </ul>
-  </nav>
-  
-  <article>
-    <p>Corners: <input type="number" id="corners" value="0" ></p>
-    <p>2-inch:  <input type="number" id = "2inch" value="0" readonly></p>
-    <p>3-inch:  <input type="number" id = "3inch" value="0" readonly></p>
-    <p> <canvas id='canvas' width=700 height=700 >   </p>
-
-  </article>
-</section>
-
-<footer>
-  <p>Copyright Geeky Faye 2020</p>
-</footer>
-
-</body>
-<script type = "text/javascript">
-  function myFunction() {
-      width = document.getElementById("Width").value
-      height = document.getElementById("Height").value
-      type = document.getElementById("type").value
-      calc_width = width - 8
-      pieces_width = Math.floor (calc_width / 3 ) * 2
-      pieces_width_r = Math.floor( (calc_width % 3)/2 ) * 2
-      calc_height = height - 8
-      pieces_height = Math.floor(calc_height / 3 ) * 2
-      pieces_height_r = Math.floor( (calc_height % 3)/2 ) * 2
-
-      document.getElementById("corners").value = 4;
-      document.getElementById("2inch").value = pieces_width_r + pieces_height_r;
-      document.getElementById("3inch").value = pieces_width + pieces_height;
-      loadLayout();
-    }
-  </script>
-
-  <script>
-    var ctx = document.getElementById("canvas").getContext("2d");
-    var img = new Image();
-    img.src = '2inch-r.png'
-    //img.onload = function() 
-    function loadLayout()
-    {
-      var pat = ctx.createPattern(img, 'repeat');
-      ctx.rect(0, 0, 700, 550);
-      ctx.fillStyle = pat;
-      ctx.fill();
-    };
-  </script>
+      <a-entity camera cameratransform></a-entity>
+    </a-scene>
+  </body>
 </html>
