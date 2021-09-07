@@ -49,9 +49,6 @@
     
     var config = {extensions: ["Autodesk.Viewing.MarkupsCore"]};
     var viewer;
-    // After model finishes loading (async)
-    var extension = viewer.getExtension("Autodesk.Viewing.MarkupsCore");
-    extension.enterEditMode();
 
     function getURN(onURNCallback) {
         $.get({
@@ -124,6 +121,11 @@
 
         var viewerDiv = document.getElementById('MyViewerDiv');
         viewer = new Autodesk.Viewing.Private.GuiViewer3D(viewerDiv);
+        
+        
+        // After model finishes loading (async)
+        var extension = viewer.getExtension("Autodesk.Viewing.MarkupsCore");
+        extension.enterEditMode();
         
         // Our customization of the Viewer: we are removing some of the toolbar buttons
         viewer.addEventListener(Autodesk.Viewing.TOOLBAR_CREATED_EVENT, onToolbarCreated)
