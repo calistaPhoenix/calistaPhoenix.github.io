@@ -46,8 +46,11 @@
     <script>
     // this is the iframe URL that shows up when sharing a model embed on a page
     var embedURLfromA360 = 'https://autodesk3743.autodesk360.com/shares/public/SHabee1QT1a327cf2b7a174096650e4352bf?mode=embed'; // Stirling Engine
-
+    
+    var config = {extensions: ["Autodesk.Viewing.MarkupsCore"]};
     var viewer;
+    // After model finishes loading (async)
+    var extension = viewer.getExtension("Autodesk.Viewing.MarkupsCore");
 
     function getURN(onURNCallback) {
         $.get({
